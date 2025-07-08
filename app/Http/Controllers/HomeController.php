@@ -39,7 +39,7 @@ class HomeController extends Controller
             'code'      => $this->generateOrderCode(),
             'map_link'  => $request->map_link,
             'action'    => 'Tăng review',
-            'status'    => 'pending',
+            'status'    => 'Đang chờ',
             'note'      => $request->note,
             'drive_link'=> $request->drive_link,
             'price'     => $totalPrice,

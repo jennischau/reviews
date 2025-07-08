@@ -31,13 +31,23 @@
                             <tr>
                                 <td>{{ $order->id }}</td>
                                 <td>{{ $order->code }}</td>
-                                <td>{{ $order->map_link }}</td>
+                                <td>
+                                    {{ Str::limit($order->map_link, 40) }}
+                                    <button class="btn btn-sm btn-outline-secondary ms-2 copy-btn" data-link="{{ $order->map_link }}">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </td>
                                 <td>{{ $order->action }}</td>
                                 <td>{{ $order->status }}</td>
                                 <td>{{ $order->note }}</td>
                                 <td>{{ $order->content }}</td>
                                 <td>{{ $order->image }}</td>
-                                <td>{{ $order->drive_link }}</td>
+                                <td>
+                                    {{ Str::limit($order->drive_link, 40) }}
+                                    <button class="btn btn-sm btn-outline-secondary ms-2 copy-btn" data-link="{{ $order->drive_link }}">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </td>
                                 <td>{{ $order->price }}</td>
                                 <td>{{ $order->time }}</td>
                                 <td>{{ $order->completed_at }}</td>
@@ -66,4 +76,19 @@
     </div>
     </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.copy-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const link = btn.getAttribute('data-link');
+                    navigator.clipboard.writeText(link).then(() => {
+                        alert('Đã sao chép link!');
+                    }).catch(err => {
+                        alert('Không thể sao chép link');
+                    });
+                });
+            });
+        });
+    </script>
+
 @endsection

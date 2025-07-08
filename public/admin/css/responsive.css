@@ -1,0 +1,13 @@
+@media (max-width: 1023px){
+    #main{
+        padding: 12px;
+    }
+    .sidebar-wrapper .menu {
+        padding: 12px;
+
+    }
+    .card .card-body{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

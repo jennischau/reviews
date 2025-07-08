@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VnPayController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +34,16 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/vnpay/payment', [VnPayController::class, 'createPayment'])->name('vnpay.payment');
     Route::get('/vnpay/return', [VnPayController::class, 'handleReturn'])->name('vnpay.return');
 
+    Route::prefix('dashboard')->name('admin.')->group( function ($router){
+        Route::get('/',[AdminController::class,'index'])->name('index');
+        Route::post('/update-status/{id}',[AdminController::class,'updateStatus'])->name('updateStatus');
+
+        Route::prefix('user')->name('user.')->group( function ($router){
+            Route::get('/',[UserController::class,'index'])->name('index');
+            Route::post('/updateLevel/{id}',[UserController::class,'updateLevel'])->name('updateLevel');
+
+        });
+    });
+
 });
+
