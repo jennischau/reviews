@@ -1,5 +1,18 @@
 @extends('layouts.app')
 @section('content')
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Thành công!</strong> {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Lỗi!</strong> {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+    </div>
+@endif
 <div class="row">
     <div class="col-12 col-md-6 mb-3">
         <div class="card">
@@ -143,11 +156,13 @@
                         <tbody>
                             @if($activities!=null)
                                 @foreach ($activities as $activity)
-                                    <td>{{ $activity->id }}</td>
-                                    <td>{{ $activity->user->name }}</td>
-                                    <td>{{ $activity->action }}</td>
-                                    <td>{{ $activity->ip_address }}</td>
-                                    <td>{{ $activity->created_at }}</td>
+                                    <tr>
+                                        <td>{{ $activity->id }}</td>
+                                        <td>{{ $activity->user->name }}</td>
+                                        <td>{{ $activity->action }}</td>
+                                        <td>{{ $activity->ip_address }}</td>
+                                        <td>{{ $activity->created_at }}</td>
+                                    </tr>
                                 @endforeach
                             @endif
                         </tbody>

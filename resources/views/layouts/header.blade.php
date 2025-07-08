@@ -1,5 +1,5 @@
 <header class="py-4 text-center d-none d-md-block">
-    <a href="/"><img src="/images/logo/logo.png" class="logo" alt="logo"></a>
+    <a href="/"><img src="{{ asset('images/logo.png') }}" class="logo" alt="logo"></a>
     <h1 class="text-danger fs-4 fw-bold mt-3">DOANH NGHIỆP THUÊ REVIEW</h1>
 </header>
 

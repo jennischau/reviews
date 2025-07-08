@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\VnPayController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +28,8 @@ Route::middleware(['auth'])->group(function (){
     Route::post('/order',[HomeController::class,'postOrder'])->name('postOrder');
     Route::get('/payment',[HomeController::class,'payment'])->name('payment');
     Route::get('/profile',[HomeController::class,'profile'])->name('profile');
+
+    Route::get('/vnpay/payment', [VnPayController::class, 'createPayment'])->name('vnpay.payment');
+    Route::get('/vnpay/return', [VnPayController::class, 'handleReturn'])->name('vnpay.return');
 
 });
