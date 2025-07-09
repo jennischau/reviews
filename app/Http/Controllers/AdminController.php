@@ -11,13 +11,14 @@ class AdminController extends Controller
         $orders=Order::get();
         return view('admin.index', compact('orders'));
     }
-    public function updateStatus($id){
+    public function updateStatus($id,Request $request){
         $order=Order::find($id);
         if($order==null){
             return redirect()->route('admin.index')->with('error', 'Không tìm thấy đơn này');
         }
-        if($order->status=="Đang chờ"){
-           $order->status="Đang phân phối";
+        $order->status=$request->status;
+        if($request->status=='Hoàn thành'){
+            $order->completed_at=now();
         }
         $order->save();
         return redirect()->route('admin.index');

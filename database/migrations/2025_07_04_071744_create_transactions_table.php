@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('transaction_code');
-            $table->decimal('balance_before', 12, 2);
-            $table->decimal('amount', 12, 2); // Số tiền trừ
-            $table->decimal('balance_after', 12, 2);
+            $table->decimal('balance_before', 12);
+            $table->decimal('amount', 12); // Số tiền trừ
+            $table->decimal('balance_after', 12);
             $table->string('description')->nullable(); // Nội dung
             $table->timestamps();
         });

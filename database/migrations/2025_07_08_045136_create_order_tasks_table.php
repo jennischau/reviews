@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Người được giao review
-            $table->string('status')->default('assigned'); // assigned, in_progress, reported, completed, failed
             $table->text('report')->nullable(); // nội dung báo cáo
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamp('reported_at')->nullable();
             $table->timestamps();
         });

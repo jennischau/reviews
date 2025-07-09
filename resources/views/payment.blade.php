@@ -36,9 +36,9 @@
                                 <tr>
                                     <td>{{ $transaction->id }}</td>
                                     <td>{{ $transaction->transaction_code }}</td>
-                                    <td>{{ $transaction->balance_before }}</td>
-                                    <td>{{ $transaction->amount }}</td>
-                                    <td>{{ $transaction->balance_after }}</td>
+                                    <td>{{ number_format($transaction->balance_before, 0, ',', '.') }} đ</td>
+                                    <td>{{ number_format($transaction->amount, 0, ',', '.') }} đ</td>
+                                    <td>{{ number_format($transaction->balance_after, 0, ',', '.') }} đ</td>
                                     <td>{{ $transaction->description }}</td>
                                     <td>{{ $transaction->created_at }}</td>
                                 </tr>

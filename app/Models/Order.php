@@ -13,7 +13,6 @@ class Order extends Model
         'id',
         'code',
         'map_link',
-        'action',
         'status',
         'note',
         'content',
@@ -27,5 +26,8 @@ class Order extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-
+    public function tasks()
+    {
+        return $this->hasMany(OrderTask::class);
+    }
 }

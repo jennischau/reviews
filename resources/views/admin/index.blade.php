@@ -46,13 +46,43 @@
                                 <td>
                                     <form action="{{ route('admin.updateStatus',['id' => $order->id]) }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn {{ $order->status=='Đang chờ' ? "btn-success" : "btn-primary" }}">{{ $order->status }}</button>
+                                        @php
+                                            $status = $order->status;
+                                            $lockStatuses = ['Đang thực hiện', 'Đã báo cáo', 'Hoàn thành'];
+                                        @endphp
+                                        <select name="status" onchange="this.form.submit()" class="form-select form-select-sm">
+                                            <option value="Đang chờ"
+                                                {{ $status == 'Đang chờ' ? 'selected' : '' }}
+                                                {{ in_array($status, $lockStatuses) ? 'disabled' : '' }}>
+                                                Đang chờ
+                                            </option>
+
+                                            <option value="Đang phân phối"
+                                                {{ $status == 'Đang phân phối' ? 'selected' : '' }}
+                                                {{ in_array($status, $lockStatuses) ? 'disabled' : '' }}>
+                                                Đang phân phối
+                                            </option>
+
+                                            <option value="Đang thực hiện"
+                                                {{ $status == 'Đang thực hiện' ? 'selected' : '' }}>
+                                                Đang thực hiện
+                                            </option>
+
+                                            <option value="Đã báo cáo"
+                                                {{ $status == 'Đã báo cáo' ? 'selected' : '' }}>
+                                                Đã báo cáo
+                                            </option>
+
+                                            <option value="Hoàn thành"
+                                                {{ $status == 'Hoàn thành' ? 'selected' : '' }}>
+                                                Hoàn thành
+                                            </option>
+                                        </select>
                                     </form>
                                 </td>
                                 <td>{{ $order->note }}</td>
                                 <td>{{ $order->content }}</td>
                                 <td>
-                                    {{-- <a href="{{ route('admin.type.update',['id' => $order->id]) }}" class="btn badge bg-success">Cập nhật</a> --}}
                                     <!-- Button trigger modal -->
                                     <button type="button" class="badge bg-danger" data-bs-toggle="modal" data-bs-target="#typeWebsite{{ $order->id }}">
                                         Xoá

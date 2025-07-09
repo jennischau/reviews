@@ -28,8 +28,8 @@
 
                     <div class="mb-3">
                         <label for="quantity" class="form-label"><b><u>Bước 2:</u></b> Nêu những ý, từ khóa bạn muốn có trong nội dung review, để thành viên viết review sát hơn.</label>
-                        <input type="text" class="form-control" id="note" name="note" placeholder="nhân viên, menu, không gian, chất lượng dv ..." onBlur="sumPrice()"  value="{{ old('note') }}">
-                        @error('note')
+                        <input type="text" class="form-control" id="content" name="content" placeholder="nhân viên, menu, không gian, chất lượng dv ..." onBlur="sumPrice()"  value="{{ old('content') }}">
+                        @error('content')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

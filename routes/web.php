@@ -45,5 +45,11 @@ Route::middleware(['auth'])->group(function (){
         });
     });
 
+    Route::get('/order-task',[HomeController::class,'getTask'])->name('getTask');
+    Route::get('/reveive-order/{id}',[HomeController::class,'receiveOrder'])->name('receiveOrder');
+    Route::get('/report/{id}',[HomeController::class,'report'])->name('report');
+    Route::get('/report-order/{id}',[HomeController::class,'reportOrder'])->name('reportOrder');
+
+
 });
 

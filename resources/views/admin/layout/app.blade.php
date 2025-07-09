@@ -40,6 +40,38 @@
     </script>
 
     <script src="{{ asset('js/main.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebar = document.getElementById('sidebar');
+            const toggleHide = document.querySelector('.sidebar-hide');
+            const toggleShow = document.querySelector('.burger-btn');
+
+            // Khi nhấn nút đóng sidebar
+            if (toggleHide && sidebar) {
+                toggleHide.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    sidebar.classList.remove('active');
+
+                    // Ẩn các menu đang active (nếu cần)
+                    document.querySelectorAll('.sidebar-item.active').forEach(function (item) {
+                        item.classList.remove('active');
+                    });
+                });
+            }
+
+            // Khi nhấn nút burger để mở lại
+            if (toggleShow && sidebar) {
+                toggleShow.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    sidebar.classList.add('active');
+
+                    // Nếu muốn khôi phục mục menu đang active thì không làm gì thêm
+                    // Nếu muốn bật menu cụ thể lại thì có thể thêm thủ công ở đây
+                });
+            }
+        });
+    </script>
+
 </body>
 
 </html>

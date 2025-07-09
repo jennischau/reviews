@@ -60,4 +60,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class);
     }
+    public function tasks()
+    {
+        return $this->hasMany(OrderTask::class);
+    }
 }

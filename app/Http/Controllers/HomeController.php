@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderTask;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class HomeController extends Controller
     {
         $request->validate([
             'map_link' => 'required|url',
-            'note' => 'required|string|max:1000',
+            'content' => 'required|string|max:1000',
             'quantity' => 'required|integer|min:1',
             'drive_link' => 'nullable|url',
         ]);
@@ -38,9 +39,8 @@ class HomeController extends Controller
             'user_id'   => $user->id, // hoặc request()->user()->id nếu qua API token
             'code'      => $this->generateOrderCode(),
             'map_link'  => $request->map_link,
-            'action'    => 'Tăng review',
             'status'    => 'Đang chờ',
-            'note'      => $request->note,
+            'content'      => $request->content,
             'drive_link'=> $request->drive_link,
             'price'     => $totalPrice,
             'time' => now()
@@ -73,5 +73,59 @@ class HomeController extends Controller
         $date = now()->format('dmY'); // ngày-tháng-năm: 08072024
         $random = strtoupper(\Illuminate\Support\Str::random(6)); // ví dụ: ABC123
         return 'ORD' . $date . '-' . $random;
+    }
+    public function getTask(){
+        $user=Auth::user();
+        if($user->level!='reviewer'){
+            return view('index');
+        }
+        $orders=Order::where('status', 'Đang phân phối')
+        ->doesntHave('tasks')
+        ->get();
+
+        $tasks = Order::whereHas('tasks', function ($q) use ($user) {
+            $q->where('user_id', $user->id)
+              ;
+        })->where('status', 'Đang thực hiện')->get();
+
+
+        $completes = Order::whereHas('tasks', function ($q) use ($user) {
+            $q->where('user_id', $user->id)
+              ;
+        })->where('status', 'Hoàn thành')->get();
+        return view('task',compact('orders','tasks','completes'));
+    }
+    public function receiveOrder($id){
+        $user=Auth::user();
+        if($user->level!='reviewer'){
+            return view('index');
+        }
+        $order=Order::find($id);
+        if($order==null){
+            return redirect()->route('getTask')->with('error','Không tìm thấy đơn hàng này');
+        }
+        OrderTask::create([
+            'order_id' => $id,
+            'user_id' => $user->id,
+        ]);
+        $order->status='Đang thực hiện';
+        $order->save();
+        return redirect()->route('getTask')->with('success','Báo cáo đơn hàng thành công');
+    }
+    public function report($id){
+        return view('report', compact('id'));
+    }
+    public function reportOrder($id){
+        $user=Auth::user();
+        if($user->level!='reviewer'){
+            return view('index');
+        }
+        $order=Order::find($id);
+        if($order==null){
+            return redirect()->route('getTask')->with('error','Không tìm thấy đơn hàng này');
+        }
+        $order->status='Đã báo cáo';
+        $order->save();
+        return redirect()->route('getTask')->with('success','Nhận đơn hàng thành công');
     }
 }

@@ -37,7 +37,16 @@
                                         <i class="fas fa-copy"></i>
                                     </button>
                                 </td>
-                                <td>{{ $order->action }}</td>
+                                @php
+                                    $daysLeft = \Carbon\Carbon::parse($order->time)->diffInDays(now(), false)-30;
+                                @endphp
+                               <td>
+                                    @if ($daysLeft > 0)
+                                        Hết bảo hành {{ $daysLeft }} ngày trước
+                                    @else
+                                        Bảo hành còn {{ abs($daysLeft) }} ngày
+                                    @endif
+                                </td>
                                 <td>{{ $order->status }}</td>
                                 <td>{{ $order->note }}</td>
                                 <td>{{ $order->content }}</td>
@@ -48,7 +57,7 @@
                                         <i class="fas fa-copy"></i>
                                     </button>
                                 </td>
-                                <td>{{ $order->price }}</td>
+                                <td>{{ number_format($order->price, 0, ',', '.') }} đ</td>
                                 <td>{{ $order->time }}</td>
                                 <td>{{ $order->completed_at }}</td>
                             </tr>
