@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/vnpay/payment', [VnPayController::class, 'createPayment'])->name('vnpay.payment');
     Route::get('/vnpay/return', [VnPayController::class, 'handleReturn'])->name('vnpay.return');
 
-    Route::middleware(['auth', 'admin'])->prefix('dashboard')->name('admin.')->group( function ($router){
+    Route::middleware(['admin'])->prefix('dashboard')->name('admin.')->group( function ($router){
         Route::get('/',[AdminController::class,'index'])->name('index');
         Route::post('/update-status/{id}',[AdminController::class,'updateStatus'])->name('updateStatus');
         Route::post('/payment',[AdminController::class,'payment'])->name('payment');
@@ -49,8 +49,8 @@ Route::middleware(['auth'])->group(function (){
         });
     });
 
-    Route::get('/order-task',[HomeController::class,'getTask'])->name('getTask');
-    Route::get('/reveive-order/{id}',[HomeController::class,'receiveOrder'])->name('receiveOrder');
+    Route::middleware(['review'])->get('/order-task',[HomeController::class,'getTask'])->name('getTask');
+    Route::middleware(['review'])->get('/reveive-order/{id}',[HomeController::class,'receiveOrder'])->name('receiveOrder');
     Route::get('/report/{id}',[HomeController::class,'report'])->name('report');
     Route::get('/report-order/{id}',[HomeController::class,'reportOrder'])->name('reportOrder');
 

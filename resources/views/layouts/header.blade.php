@@ -9,6 +9,9 @@
         <div class="container">
             <ul class="navbar-nav ms-auto">
                 @if (Auth::user())
+                    @if(Auth::user()->level=='admin')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('admin.index') }}"><i class="fas fa-user"></i> Admin</a></li>
+                    @endif
                     @if(Auth::user()->level=='reviewer')
                         <li class="nav-item"><a class="nav-link" href="{{ route('getTask') }}"><i class="fa-brands fa-stack-exchange"></i></i>Nhận Đơn Review Map</a></li>
                     @endif
@@ -40,7 +43,7 @@
     <div class="container d-flex flex-wrap gap-2">
         @if (Auth::user())
             @if(Auth::user()->level=='admin')
-                <a class="btn btn-primary flex-grow-1" href="{{ route('getTask') }}"><i class="fas fa-user"></i> Admin</a>
+                <a class="btn btn-primary flex-grow-1" href="{{ route('admin.index') }}"><i class="fas fa-user"></i> Admin</a>
             @endif
             @if(in_array(Auth::user()->level, ['admin', 'reviewer']))
                 <a class="btn btn-primary flex-grow-1" href="{{ route('getTask') }}"><i class="fa-brands fa-stack-exchange"></i> Nhận Đơn Review Map</a>
@@ -50,9 +53,15 @@
             <a class="btn btn-outline-primary flex-grow-1" href="{{ route('payment') }}"><i class="fas fa-credit-card"></i></a>
             <a class="btn btn-outline-primary flex-grow-1" href="{{ route('order') }}"><i class="fas fa-history"></i></a>
             <a class="btn btn-outline-primary flex-grow-1" href="https://zalo.me/0878067442"><i class="fas fa-circle-info me-1"></i></a>
+                <form action="{{ route('logout') }}" method="POST" class="">
+                @csrf
+                <button type="submit" class="btn btn-outline-primary flex-grow-1 text-center">
+                    <i class="fas fa-sign-out me-1"></i>
+                </button>
+                </form>
         @else
-        <a class="btn btn-outline-primary flex-grow-1" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket"></i></a>
-        <a class="btn btn-outline-primary flex-grow-1" href="{{ route('register') }}"><i class="fa-solid fa-clipboard"></i></a>
+        <a class="btn btn-outline-primary flex-grow-1" href="{{ route('login') }}">Đăng nhập</a>
+        <a class="btn btn-outline-primary flex-grow-1" href="{{ route('register') }}">Đăng ký</a>
         @endif
     </div>
   </div>

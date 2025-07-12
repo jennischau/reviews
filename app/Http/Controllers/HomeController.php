@@ -65,7 +65,7 @@ class HomeController extends Controller
         $admins=User::where('level','admin')
         ->where('account_number', '!=', '')
         ->get();
-        $payment=$admins[0];
+        $payment=$admins[0]??null;
         $minPay=0;
         $transactions=Transaction::get();
         foreach($admins as $admin){
@@ -99,7 +99,7 @@ class HomeController extends Controller
     }
     public function getTask(){
         $user=Auth::user();
-        if(in_array($user->level, ['admin', 'reviewer'])){
+        if(!in_array($user->level, ['admin', 'reviewer'])){
             return view('index');
         }
         $orders=Order::where('status', 'Đang phân phối')

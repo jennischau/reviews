@@ -57,7 +57,7 @@ class Authcontroller extends Controller
     public function postRegister(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|max:100|regex:/^[a-z]+$/|unique:users,username',
+            'name' => 'required|max:100|regex:/^[a-z0-9]+$/i|unique:users,name',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:6',
         ],[
@@ -79,7 +79,7 @@ class Authcontroller extends Controller
         // Đăng nhập sau khi đăng ký
         auth()->login($user);
 
-        return redirect('/')->with('success', 'Đăng ký thành công');
+        return redirect()->route('index')->with('success', 'Đăng ký thành công');
     }
     public function updatePassword(Request $request)
     {

@@ -129,8 +129,8 @@
         <li>Nếu các bạn muốn mua review, nội dung cá nhân tự gửi, thì file nội dung các bạn nên tự nghĩ, hoặc dùng AI để tạo review sẽ bền hơn., chứ đừng copy ở maps khác, vì nếu copy sau này GG quét sẽ rất dễ bị die.</li>
         <li>Đơn review maps sau khi oder sẽ được admin duyệt và phân phối đến các thành viên trong vòng 24h tốc độ chạy 2 - 3 review / 1 maps / 1 ngày</li>
         <li>Trong quá trình tăng đánh giá gg map, Maps có người review thì quý khách hãy like, và trả lời các bài đánh giá đó, để hạn chế và tránh bị tụt khi google quét.</li>
-        <li>khi đã mua dịch vụ đánh giá 5 sao google maps trên <strong><a href="https://danhgiamaps.vn/">danhgiamaps.vn</a></strong> quý khách vui lòng không mua bên khác (và ngược lại) . Chúng tôi sẽ nhận &amp; chịu trách nhiệm bảo hành với mọi review 5* xuất hiện trong time chạy.</li>
-        <li>Toàn bộ hệ thống dịch vụ đánh giá google map của <strong><a href="https://danhgiamaps.vn/">danhgiamaps.vn</a></strong> đều Auto, vậy nên mọi người có thể tự chủ động tự nạp tiền, ấn oder, theo dõi, quản lý, ấn bảo hành các review của mình tại mục "Lịch sử đơn"</li>
+        <li>khi đã mua dịch vụ đánh giá 5 sao google maps trên <strong><a href="https://reviewmaps.vip/">reviewmaps.vip</a></strong> quý khách vui lòng không mua bên khác (và ngược lại) . Chúng tôi sẽ nhận &amp; chịu trách nhiệm bảo hành với mọi review 5* xuất hiện trong time chạy.</li>
+        <li>Toàn bộ hệ thống dịch vụ đánh giá google map của <strong><a href="https://reviewmaps.vip/">reviewmaps.vip</a></strong> đều Auto, vậy nên mọi người có thể tự chủ động tự nạp tiền, ấn oder, theo dõi, quản lý, ấn bảo hành các review của mình tại mục "Lịch sử đơn"</li>
         <li>Web không bán dịch vụ review google map giá rẻ, chúng tôi cung cấp dịch vụ chất lượng, bảo hành uy tín. Mang lại sự ổn định, tiện lợi, tiết kiệm time, an toàn, sòng phẳng cho bạn.</li>
     </ul>
 
@@ -182,11 +182,11 @@
 
     <p><span style="color:#ff0000;"><strong>9. Kết luận</strong></span></p>
 
-    <p><strong><a href="https://danhgiamaps.vn/"><u>Mua đánh giá 5 sao google map</u></a></strong> không chỉ là một cách để tăng sự nhận thức và độ tin cậy của doanh nghiệp của bạn, mà còn là một cơ hội để cải thiện chất lượng dịch vụ và tạo ra mối quan hệ tốt hơn với khách hàng. Bằng cách tuân thủ các chiến lược kỹ lưỡng và nắm vững nguyên tắc cơ bản của dịch vụ đánh giá google map, bạn có thể đưa doanh nghiệp của mình lên tầm cao mới trên mạng lưới kinh doanh số này.</p>
+    <p><strong><a href="https://reviewmaps.vip/"><u>Mua đánh giá 5 sao google map</u></a></strong> không chỉ là một cách để tăng sự nhận thức và độ tin cậy của doanh nghiệp của bạn, mà còn là một cơ hội để cải thiện chất lượng dịch vụ và tạo ra mối quan hệ tốt hơn với khách hàng. Bằng cách tuân thủ các chiến lược kỹ lưỡng và nắm vững nguyên tắc cơ bản của dịch vụ đánh giá google map, bạn có thể đưa doanh nghiệp của mình lên tầm cao mới trên mạng lưới kinh doanh số này.</p>
 
-    <p style="text-align:right;"><strong>ADMIN: <a href="https://www.facebook.com/ngo.v.nam">NGÔ VĂN NAM</a></strong></p>
+    <p style="text-align:right;"><strong>ADMIN: <a href="https://www.facebook.com/nguyen.van.hoang.tam.2024/">NGUYỄN VĂN HOÀNG TÂM</a></strong></p>
 
-    <p style="text-align:right;"><strong>CALL/ZALO: 0968 533 675</strong></p>
+    <p style="text-align:right;"><strong>CALL/ZALO: 087 806 7442</strong></p>
 
                 </div>
             </div>

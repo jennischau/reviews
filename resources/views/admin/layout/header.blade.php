@@ -19,7 +19,11 @@
                         <span>Trang chủ</span>
                     </a>
                 </li>
-
+                <li class="sidebar-item {{ Route::is('index') ? 'active' : '' }}">
+                    <a href="{{ route('index') }}" class='sidebar-link' style="border: 1px solid #435ebe;">
+                        <span>Trang review</span>
+                    </a>
+                </li>
                 <li class="sidebar-item {{ Route::is('admin.user.index') ? 'active' : '' }} " >
                     <a href="{{ route('admin.user.index') }}" class='sidebar-link' style="border: 1px solid #435ebe;">
                         <span>Người dùng</span>
