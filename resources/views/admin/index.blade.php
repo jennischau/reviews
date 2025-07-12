@@ -5,13 +5,12 @@
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h3>Đơn review maps</h3>
-                {{-- <a href="{{ route('admin.type.insert') }}" class="btn btn-primary">Thêm website</a> --}}
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         {{-- <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li> --}}
-                        <li class="breadcrumb-item active" aria-current="page">Loại Website</li>
+                        <li class="breadcrumb-item active" aria-current="page">Review maps</li>
                     </ol>
                 </nav>
             </div>
@@ -19,7 +18,7 @@
     </div>
     <section class="section">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body theme-scrollbar">
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
@@ -36,12 +35,15 @@
                         @foreach ($orders as $order)
                             <tr>
                                 <td>{{ $order->id }}</td>
-                                <td>{{ $order->code }}</td>
+                                <td>
+                                    <div style="min-width: 200px;">
+                                        {{ $order->code }}
+                                    </div>
+                                </td>
                                 <td >
-                                    {{ Str::limit($order->map_link, 40) }}
-                                    <button class="btn btn-sm btn-outline-secondary ms-2 copy-btn" data-link="{{ $order->map_link }}">
-                                        <i class="fas fa-copy"></i>
-                                    </button>
+                                    <div class="d-flex">
+                                        <a href="{{ $order->map_link }}">{{ Str::limit($order->map_link, 35) }}</a>
+                                    </div>
                                 </td>
                                 <td>
                                     <form action="{{ route('admin.updateStatus',['id' => $order->id]) }}" method="POST">
@@ -50,7 +52,7 @@
                                             $status = $order->status;
                                             $lockStatuses = ['Đang thực hiện', 'Đã báo cáo', 'Hoàn thành'];
                                         @endphp
-                                        <select name="status" onchange="this.form.submit()" class="form-select form-select-sm">
+                                        <select name="status" onchange="this.form.submit()" class="form-select form-select-sm" style="min-width: 150px">
                                             <option value="Đang chờ"
                                                 {{ $status == 'Đang chờ' ? 'selected' : '' }}
                                                 {{ in_array($status, $lockStatuses) ? 'disabled' : '' }}>
@@ -80,35 +82,22 @@
                                         </select>
                                     </form>
                                 </td>
-                                <td>{{ $order->note }}</td>
-                                <td>{{ $order->content }}</td>
                                 <td>
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="badge bg-danger" data-bs-toggle="modal" data-bs-target="#typeWebsite{{ $order->id }}">
-                                        Xoá
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="typeWebsite{{ $order->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Xoá loại website</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Bạn có muốn xoá loại website này không?
-                                            </div>
-                                            <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                            {{-- <form action="{{ route('admin.type.delete',['id' => $order->id]) }}" method="GET">
-                                                @csrf
-                                                    <button type="submit" class="btn btn-danger">Xoá</button>
-                                            </form> --}}
-                                            </div>
-                                        </div>
-                                        </div>
+                                    <div style="min-width: 120px;">
+                                        {{ $order->note }}
                                     </div>
+                                </td>
+                                <td>
+                                    <div style="min-width: 150px;">
+                                        @if ($order->content !=null)
+                                            {{ $order->content }}
+                                        @else
+                                            <div class="text-danger">Trống</div>
+                                        @endif
+                                    </div>
+                                </td>
+                                <td>
+
                                 </td>
                             </tr>
                         @endforeach
@@ -120,17 +109,19 @@
 
     </section>
 </div>
+<script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.copy-btn').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                const link = btn.getAttribute('data-link');
-                navigator.clipboard.writeText(link).then(() => {
-                    alert('Đã sao chép link!');
-                }).catch(err => {
-                    alert('Không thể sao chép link');
-                });
-            });
+        const clipboard = new ClipboardJS('.copy-btn');
+
+        clipboard.on('success', function (e) {
+            alert('Đã sao chép liên kết!');
+            e.clearSelection();
+        });
+
+        clipboard.on('error', function (e) {
+            alert('Không thể sao chép. Vui lòng sao chép thủ công.');
         });
     });
 </script>

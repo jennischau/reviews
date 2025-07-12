@@ -24,6 +24,11 @@ class User extends Authenticatable
         'level',
         'balance',
         'total_deposit',
+        'name_bank',
+        'short_name',
+        'account_number',
+        'account_name',
+        'recipient',
     ];
 
     /**

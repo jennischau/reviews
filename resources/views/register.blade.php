@@ -33,8 +33,8 @@
             @csrf
 
             <div class="col-12">
-              <label class="form-label" for="name">Họ tên</label>
-              <input class="form-control" id="name" name="name" type="text" placeholder="Họ và tên" required value="{{ old('name') }}" />
+              <label class="form-label" for="name">Username</label>
+              <input class="form-control" id="name" name="name" type="text" placeholder="user123" required value="{{ old('name') }}" />
             </div>
 
             <div class="col-12">

@@ -26,9 +26,12 @@ class HomeController extends Controller
     {
         $request->validate([
             'map_link' => 'required|url',
-            'content' => 'required|string|max:1000',
-            'quantity' => 'required|integer|min:1',
+            'content' => 'max:1000',
+            'quantity' => 'integer|min:1',
             'drive_link' => 'nullable|url',
+        ],[
+            'map_link.required' => 'Vui lòng nhập link maps',
+            'map_link.url' => 'Vui lòng nhập đúng định dang link',
         ]);
         $user=Auth::user();
         $totalPrice = 15000 * $request->quantity;
@@ -59,8 +62,28 @@ class HomeController extends Controller
     }
     public function payment(){
         $user = Auth::user();
+        $admins=User::where('level','admin')
+        ->where('account_number', '!=', '')
+        ->get();
+        $payment=$admins[0];
+        $minPay=0;
+        $transactions=Transaction::get();
+        foreach($admins as $admin){
+
+            $sum=0;
+            foreach($transactions as $transaction){
+                $lastPart = substr($transaction->transaction_code, strrpos($transaction->transaction_code, '-') + 1);
+                if(strcasecmp($lastPart, $admin->recipient) === 0){
+                    $sum+=$transaction->amount;
+                }
+            }
+            if (is_null($minPay) || $sum < $minPay) {
+                $minPay = $sum;
+                $payment = $admin;
+            }
+        }
         $transactions=$user->transaction()->get();
-        return view('payment', compact('transactions'));
+        return view('payment', compact('transactions','payment'));
     }
     public function profile(){
         $user = Auth::user();
@@ -76,7 +99,7 @@ class HomeController extends Controller
     }
     public function getTask(){
         $user=Auth::user();
-        if($user->level!='reviewer'){
+        if(in_array($user->level, ['admin', 'reviewer'])){
             return view('index');
         }
         $orders=Order::where('status', 'Đang phân phối')
@@ -110,7 +133,7 @@ class HomeController extends Controller
         ]);
         $order->status='Đang thực hiện';
         $order->save();
-        return redirect()->route('getTask')->with('success','Báo cáo đơn hàng thành công');
+        return redirect()->route('getTask')->with('success','Nhận đơn hàng thành công');
     }
     public function report($id){
         return view('report', compact('id'));
@@ -126,6 +149,6 @@ class HomeController extends Controller
         }
         $order->status='Đã báo cáo';
         $order->save();
-        return redirect()->route('getTask')->with('success','Nhận đơn hàng thành công');
+        return redirect()->route('getTask')->with('success','Báo cáo đơn hàng thành công');
     }
 }

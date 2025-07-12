@@ -32,10 +32,7 @@
                                 <td>{{ $order->id }}</td>
                                 <td>{{ $order->code }}</td>
                                 <td>
-                                    {{ Str::limit($order->map_link, 40) }}
-                                    <button class="btn btn-sm btn-outline-secondary ms-2 copy-btn" data-link="{{ $order->map_link }}">
-                                        <i class="fas fa-copy"></i>
-                                    </button>
+                                    <a href="{{ $order->map_link }}">{{ Str::limit($order->map_link, 40) }}</a>
                                 </td>
                                 @php
                                     $daysLeft = \Carbon\Carbon::parse($order->time)->diffInDays(now(), false)-30;
@@ -52,10 +49,7 @@
                                 <td>{{ $order->content }}</td>
                                 <td>{{ $order->image }}</td>
                                 <td>
-                                    {{ Str::limit($order->drive_link, 40) }}
-                                    <button class="btn btn-sm btn-outline-secondary ms-2 copy-btn" data-link="{{ $order->drive_link }}">
-                                        <i class="fas fa-copy"></i>
-                                    </button>
+                                    <a href="{{ $order->drive_link }}">{{ Str::limit($order->drive_link, 40) }}</a>
                                 </td>
                                 <td>{{ number_format($order->price, 0, ',', '.') }} đ</td>
                                 <td>{{ $order->time }}</td>

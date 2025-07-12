@@ -39,7 +39,12 @@
   <div class="d-md-none bg-white border-bottom py-2">
     <div class="container d-flex flex-wrap gap-2">
         @if (Auth::user())
-            <a class="btn btn-primary flex-grow-1" href="{{ route('getTask') }}"><i class="fa-brands fa-stack-exchange"></i> Nhận Đơn Review Map</a>
+            @if(Auth::user()->level=='admin')
+                <a class="btn btn-primary flex-grow-1" href="{{ route('getTask') }}"><i class="fas fa-user"></i> Admin</a>
+            @endif
+            @if(in_array(Auth::user()->level, ['admin', 'reviewer']))
+                <a class="btn btn-primary flex-grow-1" href="{{ route('getTask') }}"><i class="fa-brands fa-stack-exchange"></i> Nhận Đơn Review Map</a>
+            @endif
             <a class="btn btn-primary flex-grow-1" href="{{ route('index') }}"><i class="fas fa-map"></i> Review Map</a>
             <a class="btn btn-outline-primary flex-grow-1" href="{{ route('profile') }}"><i class="fas fa-user"></i></a>
             <a class="btn btn-outline-primary flex-grow-1" href="{{ route('payment') }}"><i class="fas fa-credit-card"></i></a>

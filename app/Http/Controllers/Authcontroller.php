@@ -31,7 +31,10 @@ class Authcontroller extends Controller
                 'user_id'    => Auth::user()->id,
             ]);
             // Redirect đến dashboard hoặc trang trước đó
-            return redirect()->intended('/');
+            if(Auth::user()->level=='admin'){
+                return redirect()->route('admin.index');
+            }
+            return redirect()->route('index');
         }
 
         // Trường hợp thất bại
@@ -54,9 +57,17 @@ class Authcontroller extends Controller
     public function postRegister(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:100',
+            'name' => 'required|max:100|regex:/^[a-z]+$/|unique:users,username',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:6',
+        ],[
+            'name.required' => 'vui lòng nhập username',
+            'name.regex' => 'Nhập chuỗi tên không dấu',
+            'name.unique' => 'Vui lòng đổi username khác',
+            'email.required' => 'vui lòng nhập email',
+            'email.unique' => 'Trùng email! Vui lòng nhập email khác',
+            'password.required' => 'Vui lòng nhập email',
+            'password.confirmed' => 'Mật khẩu nhập lại không đúng'
         ]);
 
         $user = User::create([

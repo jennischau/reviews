@@ -34,9 +34,13 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/vnpay/payment', [VnPayController::class, 'createPayment'])->name('vnpay.payment');
     Route::get('/vnpay/return', [VnPayController::class, 'handleReturn'])->name('vnpay.return');
 
-    Route::prefix('dashboard')->name('admin.')->group( function ($router){
+    Route::middleware(['auth', 'admin'])->prefix('dashboard')->name('admin.')->group( function ($router){
         Route::get('/',[AdminController::class,'index'])->name('index');
         Route::post('/update-status/{id}',[AdminController::class,'updateStatus'])->name('updateStatus');
+        Route::post('/payment',[AdminController::class,'payment'])->name('payment');
+        Route::get('/bank',[AdminController::class,'bank'])->name('bank');
+        Route::post('/updateBank',[AdminController::class,'updateBank'])->name('updateBank');
+
 
         Route::prefix('user')->name('user.')->group( function ($router){
             Route::get('/',[UserController::class,'index'])->name('index');

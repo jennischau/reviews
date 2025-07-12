@@ -16,13 +16,18 @@
 
                 <li class="sidebar-item {{ Route::is('admin.index') ? 'active' : '' }}">
                     <a href="{{ route('admin.index') }}" class='sidebar-link' style="border: 1px solid #435ebe;">
-                        <span>Dashboard</span>
+                        <span>Trang chủ</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{ Route::is('admin.user.index') ? 'active' : '' }} " >
                     <a href="{{ route('admin.user.index') }}" class='sidebar-link' style="border: 1px solid #435ebe;">
-                        <span>User</span>
+                        <span>Người dùng</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{ Route::is('admin.bank') ? 'active' : '' }} " >
+                    <a href="{{ route('admin.bank') }}" class='sidebar-link' style="border: 1px solid #435ebe;">
+                        <span>Ngân hàng</span>
                     </a>
                 </li>
     </div>
